@@ -19,9 +19,11 @@ spec:
       retries: 3
   # Default values
   # https://github.com/stefanprodan/podinfo/blob/master/charts/podinfo/values.yaml
+  driftDetection:
+    mode: enabled
+    ignore:
+    - paths: ["/spec/replicas"]
+      target:
+        kind: Deployment
   values:
-    cache: redis-master.redis:6379
-    ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
+    replicaCount: 2
