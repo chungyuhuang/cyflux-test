@@ -8,12 +8,12 @@ spec:
     spec:
       version: ">=1.0.0-alpha"
   test:
-    enable: false
+    enable: true
+  driftDetection:
+    mode: enabled
+    ignore:
+    - paths: ["/spec/replicas"]
+      target:
+        kind: Deployment
   values:
     replicaCount: 3
-    ingress:
-      hosts:
-        - host: podinfo.test
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
