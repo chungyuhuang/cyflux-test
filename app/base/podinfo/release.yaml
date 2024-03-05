@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         name: podinfo
         namespace: flux-demo
-  interval: 5m
+  interval: 2m
   install:
     remediation:
       retries: 3
