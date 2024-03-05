@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: hello-world
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      # nodeSelector:
+      #   topology.kubernetes.io/zone: australiaeast-1
+      # # serviceAccountName: backend
+      # containers:
+      # # the backend application
+      # - name: backend
+      #   image: busybox
+      #   ports:
+      #   - containerPort: 8000
+      #   command: ["/bin/sh", "-c"]
+      #   args: ["echo 'Hello this is app 1' > /var/www/index.html && httpd -f -p 8000 -h /var/www/"]
+      containers:
+      - name: aks-helloworld
+        image: mcr.microsoft.com/azuredocs/aks-helloworld:v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: TITLE
+          value: "AKS Flux Demo"
+        # resources:
+        #   requests:
+        #     memory: "256Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "512Mi"
+        #     cpu: "500m"
