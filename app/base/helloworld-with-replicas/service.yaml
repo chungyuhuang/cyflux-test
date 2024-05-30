@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloworld-svc
+  name: helloworld-svc-with-replicas
   namespace: flux-demo
 spec:
   selector:
     app: hello-world-with-replicas
   ports:
-  - port: 8080
+  - port: 8089
     targetPort: 80

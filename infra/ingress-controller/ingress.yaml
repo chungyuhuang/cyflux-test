@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-helloworld
+  namespace: flux-demo
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: helloworld-svc
+            port:
+              number: 8088
+        path: /app1(/|$)(.*)
+        pathType: Prefix
+      - backend:
+          service:
+            name: helloworld-svc-with-replicas
+            port:
+              number: 8089
+        path: /app2(/|$)(.*)
+        pathType: Prefix
