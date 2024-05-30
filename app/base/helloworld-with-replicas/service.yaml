@@ -5,7 +5,7 @@ metadata:
   namespace: flux-demo
 spec:
   selector:
-    app: hello-world
+    app: hello-world-with-replicas
   ports:
   - port: 8080
     targetPort: 80
